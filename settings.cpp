@@ -1,5 +1,6 @@
-#include "settings.h"
+﻿#include "settings.h"
 #include "ui_settings.h"
+#include <QDir>
 
 Settings::Settings(QWidget *parent) :
     QWidget(parent),
@@ -7,11 +8,30 @@ Settings::Settings(QWidget *parent) :
 {
     ui->setupUi(this);
     updateNowState();
+    initWordLists();
 }
 
 Settings::~Settings()
 {
     delete ui;
+}
+
+void Settings::initWordLists()
+{
+    QString path = QDir::currentPath() + "\\lexicon";
+    QDir dir(path);
+    QStringList nameFilters;
+    nameFilters << "*.txt";
+    QStringList files = dir.entryList(nameFilters, QDir::Files|QDir::Readable, QDir::Name);
+    bool found = false;
+    for(auto& file :files){
+        if(file == "list.txt"){
+            found = true;
+        }
+        ui->comboBoxWordLists->addItem(file);
+    }
+    if(found)
+        ui->comboBoxWordLists->setCurrentText("list.txt");
 }
 
 void Settings::on_applyButton_clicked()
@@ -104,4 +124,9 @@ void Settings::on_textRandomBaseNumber_textChanged()
 {
     std::string randomBaseNumber = ui->textRandomBaseNumber->toPlainText().toStdString();
     step_ = std::stoi(randomBaseNumber);
+}
+
+void Settings::on_comboBoxWordLists_currentTextChanged(const QString &arg1)
+{
+    currentList_ = arg1;
 }

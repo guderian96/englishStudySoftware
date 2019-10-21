@@ -1,5 +1,6 @@
-#include "dataentry.h"
+﻿#include "dataentry.h"
 #include "ui_dataentry.h"
+#include <QDir>
 
 DataEntry::DataEntry(QWidget *parent) :
     QWidget(parent),
@@ -25,8 +26,9 @@ void DataEntry::on_Entry_clicked()
 
 void DataEntry::writeInText()
 {
+    std::string fileName = path_.toStdString().c_str();
     FILE* fp;
-    fp = fopen("E:\\list.txt", "a+");
+    fp = fopen(fileName.c_str(), "a+");
 
     std::string english = ui->textEnglish->toPlainText().toStdString();
     std::string attr = ui->textAttribute->toPlainText().toStdString();

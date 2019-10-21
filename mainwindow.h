@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -27,9 +27,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     std::vector<englishWord> englishWordList_;
-    global g_;
+    //global g_;
     DataEntry dataEntry_;
     Settings settings_;
+    QString path_;
     int currentIndex_ = -1;
 
     qint64 getFileTotalSize(QString url, int tryTimes);  //获取文件大小
@@ -52,6 +53,8 @@ private slots:
     void on_dataEntry_clicked();
 
     void on_pushButton_clicked();
+    void on_pushButtonAddImportantWordList_clicked();
+
 protected:
     bool eventFilter(QObject *obj, QEvent *ev);
 private:

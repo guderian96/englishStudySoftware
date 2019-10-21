@@ -1,4 +1,4 @@
-#ifndef DATAENTRY_H
+﻿#ifndef DATAENTRY_H
 #define DATAENTRY_H
 
 #include <QWidget>
@@ -15,6 +15,7 @@ public:
     explicit DataEntry(QWidget *parent = 0);
     ~DataEntry();
 
+    void setCurrentTextPath(QString path){ path_ = path; }
 private slots:
     void on_End_clicked();
 
@@ -23,6 +24,7 @@ private slots:
 private:
     Ui::DataEntry *ui;
     void writeInText();
+    QString path_;
 };
 
 #endif // DATAENTRY_H

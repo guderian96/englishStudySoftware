@@ -3,7 +3,7 @@
 global::global()
 {
     FILE* fp;
-    fp = fopen("list.txt", "r");
+    fp = fopen("\\lexicon\\list.txt", "r");
     char in[100];
     while (fscanf(fp, "%s", &in) != EOF)
     {
