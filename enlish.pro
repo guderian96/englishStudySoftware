@@ -28,16 +28,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    global.cpp \
     dataentry.cpp \
+    global.cpp \
+    main.cpp \
+    mainwindow.cpp \
     settings.cpp
 
 HEADERS += \
-        mainwindow.h \
-    global.h \
     dataentry.h \
+    global.h \
+    golbal.h \
+    mainwindow.h \
     settings.h
 
 FORMS += \

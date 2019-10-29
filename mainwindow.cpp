@@ -214,12 +214,11 @@ void MainWindow::on_pushButtonJudge_clicked()
     QString judgeResult = found ? pQStr->toUnicode("正确") : pQStr->toUnicode("错误");
     ui->textJudeResult->setText(judgeResult);
 
-//    QPalette pal;
-//    QString filename = QDir::currentPath();
-//    filename += found ? "/right.png" : "/wrong.png";
-//    QPixmap pixmap(filename);
-//    pal.setBrush(QPalette::Window,QBrush(pixmap));
-//    ui->rightOrWrong->setPalette(pal);
+    QString filename = QDir::currentPath();
+    filename += found ? "\\right.png" : "\\wrong.png";
+    QPixmap pixmap(filename);
+    ui->rightOrWrong->setPixmap(pixmap);
+    ui->rightOrWrong->show();
 
     showAllInfo();
 }
@@ -310,7 +309,8 @@ void MainWindow::checkLoaclFile()
     std::string finalName = loaclPath.c_str() + englishWordList_[currentIndex_].word + ".mp3";
     fileInfo.setFile(finalName.c_str());
     //ui->textDebugInfo->setText(finalName.c_str());
-    if(fileInfo.exists()){
+    long long fileSize = fileInfo.size();
+    if(fileInfo.exists() && fileSize != 0){
         playMP3(finalName);
         //QDesktopServices::openUrl(QUrl::fromLocalFile(fileInfo.absoluteFilePath()));
     }
@@ -324,7 +324,8 @@ void MainWindow::playMP3(std::string fileName)
     QMediaPlayer * player = new QMediaPlayer;
 
     player->setMedia(QUrl::fromLocalFile(fileName.c_str()));
-    player->setVolume(50);
+    int volume = settings_.getVolume();
+    player->setVolume(volume);
     player->play();
 }
 

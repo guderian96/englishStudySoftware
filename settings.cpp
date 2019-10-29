@@ -7,6 +7,11 @@ Settings::Settings(QWidget *parent) :
     ui(new Ui::Settings)
 {
     ui->setupUi(this);
+
+    QString volumeQStr(std::to_string(volume_).c_str());
+    ui->textEditVolume->setText(volumeQStr);
+    ui->horizontalSliderVolume->setValue(volume_);
+
     updateNowState();
     initWordLists();
 }
@@ -129,4 +134,11 @@ void Settings::on_textRandomBaseNumber_textChanged()
 void Settings::on_comboBoxWordLists_currentTextChanged(const QString &arg1)
 {
     currentList_ = arg1;
+}
+
+void Settings::on_horizontalSliderVolume_valueChanged(int value)
+{
+    volume_ = value;
+    QString volumeQStr(std::to_string(volume_).c_str());
+    ui->textEditVolume->setText(volumeQStr);
 }

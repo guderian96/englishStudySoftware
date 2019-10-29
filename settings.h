@@ -19,6 +19,7 @@ public:
     std::string getListMode() { return listMode_; }
     QString getCurrentList() { return currentList_; }
     int getStep() { return step_; }
+    int getVolume() { return volume_; }
 private slots:
     void on_applyButton_clicked();
 
@@ -38,12 +39,15 @@ private slots:
 
     void on_comboBoxWordLists_currentTextChanged(const QString &arg1);
 
+    void on_horizontalSliderVolume_valueChanged(int value);
+
 private:
     Ui::Settings *ui;
     std::string judgeMode_ = "englishToChineseMode";
     std::string listMode_ = "inputMode";
     QString currentList_ = "list.txt";
     int step_ = 97;
+    int volume_ = 50;
 
     void clearCheckBoxes();
     void updateNowState();
