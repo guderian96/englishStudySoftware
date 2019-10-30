@@ -12,6 +12,9 @@ Settings::Settings(QWidget *parent) :
     ui->textEditVolume->setText(volumeQStr);
     ui->horizontalSliderVolume->setValue(volume_);
 
+    QString stepQStr(step_);
+    ui->textRandomBaseNumber->setText(stepQStr););
+
     updateNowState();
     initWordLists();
 }
